@@ -214,6 +214,9 @@ function throttle(func, wait, options) {
         self.bindEvents();
       });
 
+      // Recalculate stuff if an event is triggered requesting the same.
+      this.scope.$on('reCalculateSlider', angular.bind(this, this.calcViewDimensions));
+
       // Recalculate stuff if view port dimensions have changed
       angular.element(window).on('resize', angular.bind(this, this.calcViewDimensions));
 
